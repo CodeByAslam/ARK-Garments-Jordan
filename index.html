@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARK Garments - Official Website</title>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(to bottom, #001f4d, #0066cc);
+            color: #f0f0f0;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .logo img {
+            width: 40px;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #cce6ff;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #66b3ff;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            background: none;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+
+
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background: rgba(0, 0, 0, 0.9);
+                padding: 15px;
+                border-radius: 8px;
+                width: 200px;
+            }
+
+            nav.nav-active {
+                display: flex;
+            }
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 80vh;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            filter: brightness(50%);
+        }
+
+        .carousel img.active {
+            opacity: 1;
+            filter: brightness(50%);
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: 2px solid #fff;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #fff;
+            color: #004080;
+        }
+
+        .section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+            list-style: none;
+            background-color: rgba(0, 0, 51, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 40px;
+            color: #cce6ff;
+        }
+
+        .section p {
+            font-size: 16px;
+            list-style: none;
+            line-height: 1.7;
+            text-align: center;
+            color: #e0e0e0;
+            max-width: 900px;
+            margin: 0 auto 30px;
+        }
+        
+        #about .core-values, #about .why-choose {
+    padding: 0;
+    margin: 0;
+}
+#about .core-values p, #about .why-choose p {
+    padding-left: 10px;
+    margin-bottom: 8px;
+}
+
+
+       .wrapper {
+            width: 100%;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            height: 400px;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: start;
+            max-width: 100%;
+            padding-bottom: 10px;
+
+        }
+
+        .card {
+            width: 80px;
+            height: 400px;
+            border-radius: 2rem;
+            background-size:contain;
+            background-position: center;
+             background-repeat: no-repeat;
+             background-color: white;
+            cursor: pointer;
+            overflow: hidden;
+            margin: 0 10px;
+            display: flex;
+            align-items: flex-end;
+            transition: .6s cubic-bezier(.28, -0.03, 0, .99);
+            box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
+        }
+        
+
+        .card > .row {
+            color: white;
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .card > .row > .icon {
+            background: #223;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px;
+        }
+
+        .card > .row > .description {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            overflow: hidden;
+            height: 80px;
+            width: 520px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition-delay: .3s;
+            transition: all .3s ease;
+        }
+
+        .description p {
+            color: #b0b0ba;
+            padding-top: 5px;
+        }
+
+        .description h4 {
+            text-transform: uppercase;
+        }
+
+        input[type=radio] {
+            display: none;
+        }
+
+        input:checked + label {
+            width: 600px;
+        }
+
+        input:checked + label .description {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        /* Background images */
+         .card[for="c1"] {
+    background-image: url('images.jpeg');
+}
+.card[for="c2"] {
+    background-image: url('images (1).jpeg');
+}
+.card[for="c3"] {
+    background-image: url('images (2).jpeg');
+}
+.card[for="c4"] {
+    background-image: url('31lG2Mawl5L._AC_.jpeg');
+}
+
+        /* Hover Effect */
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .card:hover .description {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                justify-content: center;
+            }
+            input:checked + label {
+                width: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-wrap: wrap;
+                justify-content: center;
+                height: auto;
+            }
+
+            .card {
+                width: 100%;
+                height: 300px; /* Adjust height for better visibility */
+                margin: 10px 0;
+                background-size: contain; /* Ensure full image is visible */
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+
+            input:checked + label {
+                width: 100%;
+                height: 350px; /* Slightly increase height for active card */
+            }
+
+            .description {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .wrapper {
+                height: auto;
+                padding: 10px;
+            }
+        
+
+
+            .container {
+                flex-direction: column;
+                align-items: center;
+                height: auto;
+            }
+
+            .card {
+                width: 100%;
+                height: 250px; /* Reduce height for smaller screens */
+                margin: 10px 0;
+                background-size: contain;
+            }
+
+            input:checked + label {
+                width: 100%;
+                height: 300px;
+            }
+        }
+        .scontainer {
+            width: 75.5vw; /* Reduced the width of the container */
+            height: 60vh; /* You can adjust the height accordingly */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Prevents overflow of images */
+        }
+
+        .slider {
+            height: 100%;
+            width: 100%; /* Make the slider fit the container width */
+            display: flex;
+            perspective: 1000px;
+            position: relative;
+            align-items: center;
+        }
+
+        .slider [class*="box"] {
+             background-size:contain;
+            background-position: center;
+             background-repeat: no-repeat;
+             background-color: white;
+            overflow: hidden;
+            border-radius: 20px;
+            position: absolute;
+            transition: all 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+        }
+          .box1, .box2, .box3, .box4, .box5, .box6, .box7 {
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .box1 {
+            background: url('91NLs-Q9BWL._AC_UY1100_.jpeg');
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .box2 {
+            background: url('Blue_Tshirt.jpeg');
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .box3 {
+            background: url('hmgoepprod.jpeg');
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .box4 {
+            background: url('hoodies.jpeg');
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .box5 {
+            background: url('images.jpeg');
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .box6 {
+            background: url('istockphoto-172425631-612x612.jpeg');
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .box7 {
+            background: url('reflective-safety-clothes.jpeg');
+            background-size: cover;
+            background-position: center center;
+        }
+        .slider [class*="box"] {
+    overflow: hidden;
+    border-radius: 20px;
+    position: absolute;
+    object-fit: cover;
+    transition: all 1s ease-in-out;  /* Smooth transition */
+}
+
+
+        /* Initial Styling of each box */
+        .slider [class*="box"]:nth-child(7) {
+            width: 60vh; /* Reduced width */
+            height: 50vh; /* Adjusted height */
+            transform: scale(0.2) translate(-50%, -50%);
+            top: 10%;
+            z-index: 1;
+        }
+
+        .slider [class*="box"]:nth-child(2),
+        .slider [class*="box"]:nth-child(6) {
+            width: 60vh; /* Reduced width */
+            height: 50vh; /* Adjusted height */
+            transform: scale(0.4) translate(-50%, -50%);
+            top: 20%;
+            z-index: 2;
+        }
+
+        .slider [class*="box"]:nth-child(3),
+        .slider [class*="box"]:nth-child(5) {
+            width: 60vh; /* Reduced width */
+            height: 50vh; /* Adjusted height */
+            transform: scale(0.6) translate(-50%, -50%);
+            top: 30%;
+            z-index: 3;
+        }
+
+        .slider [class*="box"]:nth-child(4) {
+            width: 50vw; /* Adjusted width */
+            height: 50vh; /* Adjusted height */
+            border-color: #c92026;
+            color: #fff;
+            transform: scale(1) translate(-50%, -50%);
+            top: 50%;
+            z-index: 4;
+        }
+
+        /* Positioning of each box */
+        .slider [class*="box"]:nth-child(1) { left: -13%; }
+        .slider [class*="box"]:nth-child(2) { left: -5%; }
+        .slider [class*="box"]:nth-child(3) { left: 10%; }
+        .slider [class*="box"]:nth-child(4) { left: 50%; }
+        .slider [class*="box"]:nth-child(5) { left: 71%; }
+        .slider [class*="box"]:nth-child(6) { left: 85%; }
+        .slider [class*="box"]:nth-child(7) { left: 100%; }
+
+        /* Hide the last box outside the view */
+        .slider .lastSlide {
+            left: 110%; /* Hide the last image off-screen */
+        }
+
+        /* Animation for the first slide */
+        .slider .firstSlide {
+            animation: firstChild 1s ease-in-out forwards;
+        }
+
+        @keyframes firstChild {
+            0% {
+                left: 100%;
+                transform: scale(0.2) translate(-50%, -50%);
+            }
+            100% {
+                left: -13%;
+                transform: scale(0.2) translate(-50%, -50%);
+            }
+        }
+         /* Media Queries */
+        @media (max-width: 1024px) {
+            .scontainer {
+                width: 90vw;
+                height: 50vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .scontainer {
+                width: 95vw;
+                height: 45vh;
+            }
+
+            .slider [class*="box"] {
+                width: 50vh;
+                height: 40vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .scontainer {
+                width: 100vw;
+                height: 40vh;
+            }
+
+            .slider [class*="box"] {
+                width: 40vh;
+                height: 35vh;
+            }
+        }
+        .about p{
+            text-align: left;
+        }
+        .about h4{
+            line-height: 50px;
+        }
+
+     .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #66b3ff;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        .contact-form button {
+            padding: 12px;
+            background-color: #004080;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #0066cc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            font-size: 14px;
+            color: #cce6ff;
+            margin-top: 30px;
+        }
+
+        footer a {
+            color: #66b3ff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+        }
+        .content {
+            padding: 20px;
+        }
+
+        /* Styling for the download button */
+        .download-button {
+            display: inline-block;
+            background-color: #007BFF;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+    <div class="logo">
+        <img src="logo.png" alt="ARK Logo">
+        <span>ARK Garments</span>
+    </div>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+    <nav id="nav-links">
+        <a href="#home">Home</a>
+        <a href="#ourproducts">Our Products</a>
+        <a href="#collections">Collections</a>
+        <a href="#about">About</a>
+        <a href="#brochure" id="brochure-link">Brochure</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+      <section class="carousel" id="home">
+        <div class="hero-content">
+            <h1>Discover Your Style with ARK Garments</h1>
+            <p>Premium quality clothing for every occasion.</p>
+            <a href="#ourproducts" class="btn">View Products</a>
+        </div>
+        <img src="1676212959650.jpg" class="active" alt="Carousel Image 1">
+        <img src="apparel-manufacturing1--1-.jpg" alt="Carousel Image 2">
+        <img src="UPshutterstock1096478189.jpg" alt="Carousel Image 3">
+    </section>
+
+
+    <section class="section" id="ourproducts">
+        <h2>Our Products</h2>
+        <div class="wrapper">
+        <div class="container">
+            <input type="radio" name="slide" id="c1" checked>
+            <label for="c1" class="card">
+                <div class="row">
+                    <div class="icon">1</div>
+                    <div class="description">
+                        <h4>Winter</h4>
+                        <p>Winter has so much to offer - creative activities.</p>
+                    </div>
+                </div>
+            </label>
+
+            <input type="radio" name="slide" id="c2">
+            <label for="c2" class="card">
+                <div class="row">
+                    <div class="icon">2</div>
+                    <div class="description">
+                        <h4>Digital Technology</h4>
+                        <p>Gets better every day - stay tuned!</p>
+                    </div>
+                </div>
+            </label>
+
+            <input type="radio" name="slide" id="c3">
+            <label for="c3" class="card">
+                <div class="row">
+                    <div class="icon">3</div>
+                    <div class="description">
+                        <h4>Globalization</h4>
+                        <p>Helping people all over the world.</p>
+                    </div>
+                </div>
+            </label>
+
+            <input type="radio" name="slide" id="c4">
+            <label for="c4" class="card">
+                <div class="row">
+                    <div class="icon">4</div>
+                    <div class="description">
+                        <h4>New Technologies</h4>
+                        <p>Space engineering becoming more advanced.</p>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </div>
+
+    </section>
+
+    <section class="section" id="collections">
+        <h2>Collections</h2>
+         <div class="scontainer">
+        <div class="slider">
+            <div class="box1"></div>
+            <div class="box2"></div>
+            <div class="box3"></div>
+            <div class="box4"></div>
+            <div class="box5"></div>
+            <div class="box6"></div>
+            <div class="box7"></div>
+        </div>
+    </div>
+    </section>
+
+
+    
+<section class="section" id="about">
+    <div class="about">
+    <h2>About Us</h2>
+<p>With <strong>30 years of expertise</strong>, ARK Garment Manufacturing Industries Ltd. has evolved from a small factory in <strong>Sharjah, UAE</strong> into a global apparel manufacturer with operations in <strong>Jordan, Kenya, Egypt, and Oman</strong>.</p>
+
+<h2>Our Vision & Mission</h2>
+<p><strong>Vision:</strong> To be the leading provider of apparel manufacturing solutions.</p>
+<p><strong>Mission:</strong> To produce a diverse range of garments with innovative designs, exceptional quality, and cost-effectiveness.</p>
+
+<h2>Our Values</h2>
+<p>✔ Commitment to <strong>on-time delivery, quality, and sustainability</strong>.</p>
+<p>✔ High efficiency and <strong>operational excellence</strong>.</p>
+<p>✔ Rigorous adherence to <strong>social and technical compliance</strong>.</p>
+
+<h2>Our Responsibility</h2>
+<p>We prioritize sustainability and responsible manufacturing with initiatives such as:</p>
+<p>♻ <strong>Energy-efficient production</strong> to reduce environmental impact.</p>
+<p>♻ <strong>Sustainable sourcing</strong> of materials.</p>
+<p>♻ <strong>Waste management and recycling</strong> programs.</p>
+
+<h2>Our Milestones</h2>
+<p>📌 <strong>2018:</strong> Shifted operations to Jordan.</p>
+<p>📌 <strong>2016:</strong> Opened a factory in Salalah, Oman.</p>
+<p>📌 <strong>2011:</strong> Established a facility in Barka, Oman.</p>
+<p>📌 <strong>2009:</strong> Launched a factory in Port Said, Egypt.</p>
+<p>📌 <strong>2004:</strong> Expanded the Sharjah factory with 200 machines and in-house washing.</p>
+<p>📌 <strong>2002:</strong> Entered the Kenyan market.</p>
+<p>📌 <strong>1994:</strong> Founded as a small manufacturing unit in Sharjah, UAE.</p>
+
+<h2>Get in Touch</h2>
+<h4><strong>Visit Us:</strong> <a href="https://www.arkgarments.com" target="_blank">www.arkgarments.com</a></h4>
+<h4><strong>Email:</strong> <a href="mailto:info@arkgarments.com">info@arkgarments.com</a></h4>
+<h4><strong>Call:</strong> +962 79801 1383</h4>
+</div>
+</section>
+<section class="section" >
+     <div id="brochure" style="display:none;">
+        <h2>Our Brochure</h2>
+        <iframe src="Brochure Sample 1-4 pages.pdf" width="700" height="500"></iframe>
+        <p>Or you can <a href="Brochure Sample 1-4 pages.pdf" class="download-button" download>Download the Brochure</a></p>
+    </div>
+</div>
+</section>
+
+
+
+    <section class="section" id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-form">
+            <form action="#" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 ARK Garments Manufacturing Industries Co. Ltd. All rights reserved.</p>
+       
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+     <script>
+         document.getElementById('brochure-link').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default anchor behavior
+        const brochureSection = document.getElementById('brochure');
+        brochureSection.style.display = (brochureSection.style.display === 'none' || brochureSection.style.display === '') ? 'block' : 'none';
+    });
+        function rotate() {
+            var lastChild = $('.slider div:last-child').clone();
+            $('.slider div').removeClass('firstSlide lastSlide'); // Remove the class from the previous slide
+            $('.slider div:last-child').remove(); // Remove the last child
+            $('.slider').prepend(lastChild); // Prepend the cloned child
+            $(lastChild).addClass('firstSlide lastSlide'); // Add the class to the new first child
+        }
+
+        window.setInterval(function () {
+            rotate();
+        }, 4000); // Change the slide every 4 seconds
+
+       // Mobile menu toggle
+        function toggleMenu() {
+            document.getElementById("nav-links").classList.toggle("nav-active");
+        }
+
+        // Carousel functionality
+        document.addEventListener("DOMContentLoaded", function () {
+            let currentIndex = 0;
+            const images = document.querySelectorAll(".carousel img");
+
+            function showNextImage() {
+                images[currentIndex].classList.remove("active");
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add("active");
+            }
+
+            setInterval(showNextImage, 3000); // Change image every 3 seconds
+        });
+    </script>
+</body>
+
+</html>
