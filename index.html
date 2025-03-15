@@ -253,7 +253,7 @@
             justify-content: center;
             flex-direction: column;
             overflow: hidden;
-            height: 80px;
+            height: 100px;
             width: 520px;
             opacity: 0;
             transform: translateY(30px);
@@ -268,6 +268,7 @@
 
         .description h4 {
             text-transform: uppercase;
+            color: #6287cc;
         }
 
         input[type=radio] {
@@ -279,8 +280,8 @@
         }
 
         input:checked + label .description {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
+            opacity: 1 ;
+            transform: translateY(0) ;
         }
 
         /* Background images */
@@ -322,7 +323,7 @@
             .container {
                 flex-wrap: wrap;
                 justify-content: center;
-                height: auto;
+                
             }
 
             .card {
@@ -342,6 +343,7 @@
             .description {
                 width: 100%;
                 text-align: center;
+                padding-right: 200px;
             }
         }
 
@@ -369,6 +371,11 @@
             input:checked + label {
                 width: 100%;
                 height: 300px;
+            }
+            .description {
+                width: 100%;
+                text-align: center;
+                 padding-right: 300px;
             }
         }
         .scontainer {
@@ -529,9 +536,14 @@
         }
 
         @media (max-width: 768px) {
-            .scontainer {
-                width: 95vw;
+            #collections h2{
+                margin-top: 900px;
+
+            }
+            .scontainer  {
+                width: 90vw;
                 height: 45vh;
+               
             }
 
             .slider [class*="box"] {
@@ -541,9 +553,14 @@
         }
 
         @media (max-width: 480px) {
+            #collections h2{
+                margin-top: 0px;
+
+            }
             .scontainer {
-                width: 100vw;
+                width: 90vw;
                 height: 40vh;
+
             }
 
             .slider [class*="box"] {
@@ -628,21 +645,7 @@
             padding: 20px;
         }
 
-        /* Styling for the download button */
-        .download-button {
-            display: inline-block;
-            background-color: #007BFF;
-            color: white;
-            padding: 12px 24px;
-            font-size: 16px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .download-button:hover {
-            background-color: #0056b3;
-        }
+       
 
     </style>
 </head>
@@ -659,7 +662,6 @@
         <a href="#ourproducts">Our Products</a>
         <a href="#collections">Collections</a>
         <a href="#about">About</a>
-        <a href="#brochure" id="brochure-link">Brochure</a>
         <a href="#contact">Contact</a>
     </nav>
 </header>
@@ -685,8 +687,8 @@
                 <div class="row">
                     <div class="icon">1</div>
                     <div class="description">
-                        <h4>Winter</h4>
-                        <p>Winter has so much to offer - creative activities.</p>
+                        <h4>Sleeveless hoodies</h4>
+                        <p> blend of comfort, versatility, and style.</p>
                     </div>
                 </div>
             </label>
@@ -696,8 +698,8 @@
                 <div class="row">
                     <div class="icon">2</div>
                     <div class="description">
-                        <h4>Digital Technology</h4>
-                        <p>Gets better every day - stay tuned!</p>
+                        <h4>Hoodie</h4>
+                        <p>blend of comfort, versatility, and style.</p>
                     </div>
                 </div>
             </label>
@@ -707,8 +709,8 @@
                 <div class="row">
                     <div class="icon">3</div>
                     <div class="description">
-                        <h4>Globalization</h4>
-                        <p>Helping people all over the world.</p>
+                        <h4>Jersey</h4>
+                        <p> its soft, comfy feel and laid-back aesthetic.</p>
                     </div>
                 </div>
             </label>
@@ -718,8 +720,8 @@
                 <div class="row">
                     <div class="icon">4</div>
                     <div class="description">
-                        <h4>New Technologies</h4>
-                        <p>Space engineering becoming more advanced.</p>
+                        <h4>Hoodie</h4>
+                        <p>blend of comfort, versatility, and style.</p>
                     </div>
                 </div>
             </label>
@@ -780,14 +782,7 @@
 <h4><strong>Call:</strong> +962 79801 1383</h4>
 </div>
 </section>
-<section class="section" >
-     <div id="brochure" style="display:none;">
-        <h2>Our Brochure</h2>
-        <iframe src="Brochure Sample 1-4 pages.pdf" width="700" height="500"></iframe>
-        <p>Or you can <a href="Brochure Sample 1-4 pages.pdf" class="download-button" download>Download the Brochure</a></p>
-    </div>
-</div>
-</section>
+
 
 
 
@@ -809,11 +804,7 @@
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
      <script>
-         document.getElementById('brochure-link').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default anchor behavior
-        const brochureSection = document.getElementById('brochure');
-        brochureSection.style.display = (brochureSection.style.display === 'none' || brochureSection.style.display === '') ? 'block' : 'none';
-    });
+         
         function rotate() {
             var lastChild = $('.slider div:last-child').clone();
             $('.slider div').removeClass('firstSlide lastSlide'); // Remove the class from the previous slide
@@ -824,7 +815,7 @@
 
         window.setInterval(function () {
             rotate();
-        }, 4000); // Change the slide every 4 seconds
+        }, 2000); // Change the slide every 4 seconds
 
        // Mobile menu toggle
         function toggleMenu() {
